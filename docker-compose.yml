@@ -37,10 +37,15 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
-    ports:
-      - "8080:80"
+    expose:
+      - "80"
+    networks:
+      - default
+      - dokploy-network
 
 volumes:
   postgres_data:
+
+networks:
+  dokploy-network:
     external: true
-    name: name-saver-postgres-data
